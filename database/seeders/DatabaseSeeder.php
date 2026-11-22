@@ -2,24 +2,26 @@
 
 namespace Database\Seeders;
 
-use App\Models\User;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\Task;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
 {
-    use WithoutModelEvents;
-
-    /**
-     * Seed the application's database.
-     */
     public function run(): void
     {
-        // User::factory(10)->create();
+        Task::firstOrCreate(
+            ['title' => 'Review project requirements'],
+            ['status' => 'pending', 'task_date' => now()->toDateString()]
+        );
 
-        User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
-        ]);
+        Task::firstOrCreate(
+            ['title' => 'Finish Laravel deployment'],
+            ['status' => 'pending', 'task_date' => now()->addDay()->toDateString()]
+        );
+
+        Task::firstOrCreate(
+            ['title' => 'Test the task list'],
+            ['status' => 'completed', 'task_date' => now()->addDays(2)->toDateString()]
+        );
     }
 }

@@ -8,7 +8,7 @@ class ProfileController extends Controller
 {
     public function index()
     {
-        $user = User::firstOrFail();
+        $user = User::firstOrNew();
 
         return view('profile.index', compact('user'));
     }
